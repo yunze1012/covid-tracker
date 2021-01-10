@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID-19 World Statistics</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default">
+
+    <a class="navbar-brand">Tracker</a>
+
+    <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Cases</a></li>
+        <li><a href="/deaths">Deaths</a></li>
+        <li><a href="/recovered">Recovered</a></li>
+    </ul>
+
+</nav>
+
+<div class="container">
+<h1 class="display-1">COVID-19 Worldwide Cases per Country</h1>
+
+<div class="jumbotron jumbotron-fluid">
+    <p class="lead">Total number of cases reported worldwide:</p>
+    <h1 class="display-4" th:text="${totalCasesWW}"></h1>
+    <hr class="my-4">
+    <p class="lead">Cases reported since yesterday:</p>
+    <h1 class="display-4" th:text="${totalDiffWW}"></h1>
+    <hr class="my-4">
+    <p>
+        <span>Updated on:</span>
+        <span th:text="${time}"></span>
+    </p>
+</div>
+
+    <table class="table table-dark table-hover">
+        <tr>
+            <th>Country</th>
+            <th>Province/State</th>
+            <th>Total Cases</th>
+            <th>Changes</th>
+        </tr>
+        <tr th:each="stat : ${stats}">
+            <td th:text="${stat.country}">N/A</td>
+            <td th:text="${stat.province}">N/A</td>
+            <td th:text="${stat.cases}">N/A</td>
+            <td th:text="${stat.dailyDelta}">0</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>
